@@ -12,6 +12,12 @@
 
   <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
+    <Folder Include="Commands\" />
+    <Folder Include="Tests\" />
+    <Folder Include="Queries\" />
+    <Folder Include="Services\" />
+    <Folder Include="Repositories\" />
   </ItemGroup>
 
 </Project>
