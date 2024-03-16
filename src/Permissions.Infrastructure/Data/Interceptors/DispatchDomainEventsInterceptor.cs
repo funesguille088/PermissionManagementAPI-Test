@@ -38,8 +38,6 @@ namespace Permissions.Infrastructure.Data.Interceptors
 
             foreach ( var domainEvent in domainEvents)
                 await mediator.Publish(domainEvent);
-
-            throw new NotImplementedException();
         }
     }
 }
