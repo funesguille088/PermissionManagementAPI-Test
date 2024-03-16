@@ -15,4 +15,9 @@
     <ProjectReference Include="..\PermissionManagement\Permissions.Domain\Permissions.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+    <Folder Include="Permissions\EventHandlers\Integration\" />
+  </ItemGroup>
+
 </Project>
