@@ -3,15 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34607.119
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionManagementAPI", "PermissionManagementAPI\PermissionManagementAPI.csproj", "{B8483559-342C-4BF9-8F91-0B8872077EE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionManagementAPI", "PermissionManagementAPI\PermissionManagementAPI.csproj", "{B8483559-342C-4BF9-8F91-0B8872077EE1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permissions.Infrastructure", "Permissions.Infrastructure\Permissions.Infrastructure.csproj", "{B41556D8-3E1C-4B5A-A4B6-BBA587EC9BD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permissions.Infrastructure", "Permissions.Infrastructure\Permissions.Infrastructure.csproj", "{B41556D8-3E1C-4B5A-A4B6-BBA587EC9BD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permissions.Domain", "Permissions.Domain\Permissions.Domain.csproj", "{C0F2025A-B37E-4950-A1F5-580AF0A2C56F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permissions.Domain", "Permissions.Domain\Permissions.Domain.csproj", "{C0F2025A-B37E-4950-A1F5-580AF0A2C56F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Permissions.Application", "Permissions.Application\Permissions.Application.csproj", "{FD261154-530A-40ED-8F81-5F9CC728B80B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Permissions.Application", "Permissions.Application\Permissions.Application.csproj", "{FD261154-530A-40ED-8F81-5F9CC728B80B}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{C76F10E4-6588-4047-90BA-C4CBE8C29AC3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BuildingBlocks", "BuildingBlocks", "{9144B74A-A390-433C-BE3F-5E61033C4C9F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{A23F75A6-C4F5-40C2-A465-88B9CEBB6798}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj", "{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PermissionManagement", "PermissionManagement", "{88EB64AF-C9F1-4867-909F-9E8164FC5C32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,9 +47,21 @@ Global
 		{C76F10E4-6588-4047-90BA-C4CBE8C29AC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C76F10E4-6588-4047-90BA-C4CBE8C29AC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C76F10E4-6588-4047-90BA-C4CBE8C29AC3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B8483559-342C-4BF9-8F91-0B8872077EE1} = {88EB64AF-C9F1-4867-909F-9E8164FC5C32}
+		{B41556D8-3E1C-4B5A-A4B6-BBA587EC9BD7} = {88EB64AF-C9F1-4867-909F-9E8164FC5C32}
+		{C0F2025A-B37E-4950-A1F5-580AF0A2C56F} = {88EB64AF-C9F1-4867-909F-9E8164FC5C32}
+		{FD261154-530A-40ED-8F81-5F9CC728B80B} = {88EB64AF-C9F1-4867-909F-9E8164FC5C32}
+		{8B7F2CCB-6A0B-4C77-A3D4-4E44F96D8F06} = {9144B74A-A390-433C-BE3F-5E61033C4C9F}
+		{88EB64AF-C9F1-4867-909F-9E8164FC5C32} = {A23F75A6-C4F5-40C2-A465-88B9CEBB6798}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6AE21F8F-56D3-4B1A-B199-473D144E1B46}
