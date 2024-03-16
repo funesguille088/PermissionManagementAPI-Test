@@ -13,13 +13,9 @@
   <ItemGroup>
     <Folder Include="Data\" />
     <Folder Include="Dtos\" />
-    <Folder Include="Exceptions\" />
-    <Folder Include="Permissions\EventHandlers\Domain\" />
-    <Folder Include="Permissions\EventHandlers\Integration\" />
     <Folder Include="Permissions\Commands\DeletePermission\" />
     <Folder Include="Permissions\Commands\ModifyPermission\" />
-    <Folder Include="Permissions\Queries\GetPermissions\" />
-    <Folder Include="Permissions\Queries\" />
+    <Folder Include="Permissions\Commands\RequestPermission\" />
   </ItemGroup>
 
 </Project>
