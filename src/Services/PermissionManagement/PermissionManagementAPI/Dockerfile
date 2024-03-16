@@ -9,13 +9,13 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["PermissionManagementAPI/PermissionManagementAPI.csproj", "PermissionManagementAPI/"]
-COPY ["Permissions.Application/Permissions.Application.csproj", "Permissions.Application/"]
-COPY ["Permissions.Domain/Permissions.Domain.csproj", "Permissions.Domain/"]
-COPY ["Permissions.Infrastructure/Permissions.Infrastructure.csproj", "Permissions.Infrastructure/"]
-RUN dotnet restore "./PermissionManagementAPI/PermissionManagementAPI.csproj"
+COPY ["Services/PermissionManagement/PermissionManagementAPI/PermissionManagementAPI.csproj", "Services/PermissionManagement/PermissionManagementAPI/"]
+COPY ["Services/PermissionManagement/Permissions.Application/Permissions.Application.csproj", "Services/PermissionManagement/Permissions.Application/"]
+COPY ["Services/PermissionManagement/Permissions.Domain/Permissions.Domain.csproj", "Services/PermissionManagement/Permissions.Domain/"]
+COPY ["Services/PermissionManagement/Permissions.Infrastructure/Permissions.Infrastructure.csproj", "Services/PermissionManagement/Permissions.Infrastructure/"]
+RUN dotnet restore "./Services/PermissionManagement/PermissionManagementAPI/PermissionManagementAPI.csproj"
 COPY . .
-WORKDIR "/src/PermissionManagementAPI"
+WORKDIR "/src/Services/PermissionManagement/PermissionManagementAPI"
 RUN dotnet build "./PermissionManagementAPI.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
 FROM build AS publish

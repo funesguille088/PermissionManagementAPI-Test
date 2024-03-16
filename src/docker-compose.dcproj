@@ -4,7 +4,7 @@
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
     <DockerPublishLocally>False</DockerPublishLocally>
-    <ProjectGuid>c76f10e4-6588-4047-90ba-c4cbe8c29ac3</ProjectGuid>
+    <ProjectGuid>5381587c-da96-47f4-9275-562fa01c8254</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>permissionmanagementapi</DockerServiceName>
