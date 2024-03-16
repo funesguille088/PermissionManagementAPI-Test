@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  permissionmanagementapi:
+    image: ${DOCKER_REGISTRY-}permissionmanagementapi
+    build:
+      context: .
+      dockerfile: PermissionManagementAPI/Dockerfile
