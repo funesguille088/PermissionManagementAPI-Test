@@ -1,6 +1,15 @@
 version: '3.4'
 
 services:
+  permissionmanagementdb:
+    container_name: permissionmanagementdb
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=GfD12345678
+    restart: always
+    ports:
+      - "1433:1433"
+
   permissionmanagementapi:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development

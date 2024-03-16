@@ -1,6 +1,9 @@
 version: '3.4'
 
 services:
+  permissionmanagementdb:
+    image: mcr.microsoft.com/mssql/server
+
   permissionmanagementapi:
     image: ${DOCKER_REGISTRY-}permissionmanagementapi
     build:
