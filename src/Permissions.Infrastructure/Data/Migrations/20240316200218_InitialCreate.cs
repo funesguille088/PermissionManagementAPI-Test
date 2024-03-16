@@ -38,6 +38,8 @@ namespace Permissions.Infrastructure.Data.Migrations
                     EmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ApplicationName = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PermissionType = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "User"),
+                    PermissionGranted = table.Column<bool>(type: "bit", nullable: false),
+                    PermissionGrantedEmployeeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -50,8 +52,12 @@ namespace Permissions.Infrastructure.Data.Migrations
                         name: "FK_Permissions_Employees_EmployeeId",
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Permissions_Employees_PermissionGrantedEmployeeId",
+                        column: x => x.PermissionGrantedEmployeeId,
+                        principalTable: "Employees",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -70,6 +76,11 @@ namespace Permissions.Infrastructure.Data.Migrations
                 name: "IX_Permissions_EmployeeId",
                 table: "Permissions",
                 column: "EmployeeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Permissions_PermissionGrantedEmployeeId",
+                table: "Permissions",
+                column: "PermissionGrantedEmployeeId");
         }
 
         /// <inheritdoc />

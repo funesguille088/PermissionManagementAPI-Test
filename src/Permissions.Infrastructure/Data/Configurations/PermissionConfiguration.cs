@@ -19,7 +19,8 @@ namespace Permissions.Infrastructure.Data.Configurations
             builder.HasOne<Employee>()
                 .WithMany()
                 .HasForeignKey(p => p.EmployeeId)
-                .IsRequired();
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientNoAction);
 
             builder.Property(p => p.ApplicationName).IsRequired();
             builder.Property(p => p.ApplicationName).HasMaxLength(100);
@@ -29,6 +30,14 @@ namespace Permissions.Infrastructure.Data.Configurations
                 .HasConversion(
                 pt => pt.ToString(),
                 dbStatus => (PermissionType)Enum.Parse(typeof(PermissionType), dbStatus));
+
+            builder.Property(p => p.PermissionGranted).IsRequired();
+
+            builder.HasOne<Employee>()
+                .WithMany()
+                .HasForeignKey(p => p.PermissionGrantedEmployeeId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.ClientNoAction);
 
         }
     }

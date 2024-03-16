@@ -10,4 +10,13 @@
     <ProjectReference Include="..\Permissions.Domain\Permissions.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Data\" />
+    <Folder Include="Dtos\" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Permissions\Commands\RequestPermission\" />
+    <Folder Include="Permissions\Commands\DeletePermission\" />
+    <Folder Include="Permissions\Commands\ModifyPermission\" />
+  </ItemGroup>
+
 </Project>

@@ -12,7 +12,7 @@ using Permissions.Infrastructure.Data;
 namespace Permissions.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240316141109_InitialCreate")]
+    [Migration("20240316200218_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -98,6 +98,12 @@ namespace Permissions.Infrastructure.Data.Migrations
                     b.Property<string>("LastModifiedBy")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("PermissionGranted")
+                        .HasColumnType("bit");
+
+                    b.Property<Guid>("PermissionGrantedEmployeeId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("PermissionType")
                         .IsRequired()
                         .ValueGeneratedOnAdd()
@@ -108,6 +114,8 @@ namespace Permissions.Infrastructure.Data.Migrations
 
                     b.HasIndex("EmployeeId");
 
+                    b.HasIndex("PermissionGrantedEmployeeId");
+
                     b.ToTable("Permissions");
                 });
 
@@ -116,7 +124,13 @@ namespace Permissions.Infrastructure.Data.Migrations
                     b.HasOne("Permissions.Domain.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("EmployeeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .IsRequired();
+
+                    b.HasOne("Permissions.Domain.Models.Employee", null)
+                        .WithMany()
+                        .HasForeignKey("PermissionGrantedEmployeeId")
+                        .OnDelete(DeleteBehavior.ClientNoAction)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618
