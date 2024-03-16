@@ -7,15 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\Permissions.Domain\Permissions.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Data\" />
-    <Folder Include="Dtos\" />
-    <Folder Include="Permissions\Commands\DeletePermission\" />
-    <Folder Include="Permissions\Commands\ModifyPermission\" />
-    <Folder Include="Permissions\Commands\RequestPermission\" />
   </ItemGroup>
 
 </Project>
