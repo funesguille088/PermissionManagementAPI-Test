@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Permissions.Infrastructure.Data;
+using Permissions.Infrastructure.Data.Interceptors;
 
 
 namespace Permissions.Infrastructure
@@ -16,6 +17,7 @@ namespace Permissions.Infrastructure
             // Add services to the container
             services.AddDbContext<ApplicationDbContext>(options => 
             { 
+                options.AddInterceptors(new AuditableEntityInterceptor());
                 options.UseSqlServer(connectionString);
             });
             
