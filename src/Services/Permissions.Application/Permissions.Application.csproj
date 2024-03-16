@@ -7,8 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
-    <ProjectReference Include="..\Permissions.Domain\Permissions.Domain.csproj" />
+    <ProjectReference Include="..\PermissionManagement\Permissions.Domain\Permissions.Domain.csproj" />
   </ItemGroup>
 
 </Project>
