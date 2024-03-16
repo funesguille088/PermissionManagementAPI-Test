@@ -17,9 +17,6 @@
     <Folder Include="Permissions\Commands\RequestPermission\" />
     <Folder Include="Permissions\Commands\DeletePermission\" />
     <Folder Include="Permissions\Commands\ModifyPermission\" />
-    <Folder Include="Permissions\EventHandlers\Domain\" />
-    <Folder Include="Permissions\EventHandlers\Integration\" />
-    <Folder Include="Permissions\Queries\GetPermissions\" />
   </ItemGroup>
 
 </Project>

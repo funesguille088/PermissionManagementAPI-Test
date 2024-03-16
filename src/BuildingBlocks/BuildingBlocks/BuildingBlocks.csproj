@@ -7,12 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Behaviors\" />
-    <Folder Include="Exceptions\" />
+    <PackageReference Include="MediatR" Version="12.2.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.2.0" />
+    <Folder Include="Exceptions\" />
+    <Folder Include="Behaviors\" />
   </ItemGroup>
 
 </Project>

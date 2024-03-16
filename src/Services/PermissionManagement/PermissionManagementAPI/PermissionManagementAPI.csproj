@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Permissions.Application\Permissions.Application.csproj" />
     <ProjectReference Include="..\Permissions.Infrastructure\Permissions.Infrastructure.csproj" />
   </ItemGroup>
 
