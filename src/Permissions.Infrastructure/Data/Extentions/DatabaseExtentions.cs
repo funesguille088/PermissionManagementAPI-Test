@@ -14,7 +14,31 @@ namespace Permissions.Infrastructure.Data.Extentions
 
             context.Database.MigrateAsync().GetAwaiter().GetResult();
 
-
+            await SeedAsync(context);
         }
+
+        private static async Task SeedAsync(ApplicationDbContext context)
+        {
+            await SeedEmployeeAsync(context);
+            await SeedPermissionsAsync(context);
+        }
+
+        private static async Task SeedEmployeeAsync(ApplicationDbContext context)
+        {
+            if (!await context.Employees.AnyAsync())
+            {
+                await context.Employees.AddRangeAsync(InitialData.Employees);
+                await context.SaveChangesAsync();
+            }
+        }
+        private static async Task SeedPermissionsAsync(ApplicationDbContext context)
+        {
+            if (!await context.Permissions.AnyAsync())
+            {
+                await context.Permissions.AddRangeAsync(InitialData.Permissions);
+                await context.SaveChangesAsync();
+            }
+        }
+
     }
 }

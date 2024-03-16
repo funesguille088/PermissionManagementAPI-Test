@@ -19,7 +19,7 @@ namespace Permissions.Domain.Models
                 Id = id,
                 EmployeeId = employeeId,
                 ApplicationName = applicationName,
-                PermissionType = PermissionType.User
+                PermissionType = permissionType
             };
 
             permission.AddDomainEvent(new PermissionCreatedEvent(permission));
