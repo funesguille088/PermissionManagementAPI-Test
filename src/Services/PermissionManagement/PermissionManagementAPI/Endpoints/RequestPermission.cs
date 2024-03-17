@@ -13,7 +13,7 @@ public class RequestPermission : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPost("/permissions", async (RequestPermissionRequest request, ISender sender) =>
+        app.MapPost("/RequestPermissions", async (RequestPermissionRequest request, ISender sender) =>
         {
             var command = request.Adapt<RequestPermissionCommand>();
 

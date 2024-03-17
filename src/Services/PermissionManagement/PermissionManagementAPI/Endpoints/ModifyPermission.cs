@@ -15,7 +15,7 @@ public class ModifyPermission : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
-        app.MapPut("/permissions", async (ModifyPermissionRequest request, ISender sender) =>
+        app.MapPut("/ModifyPermissions", async (ModifyPermissionRequest request, ISender sender) =>
         {
             var command = request.Adapt<ModifyPermissionCommand>();
 
