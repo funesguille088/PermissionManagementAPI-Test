@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildingBlocks.CQRS;
+using BuildingBlocks.Pagination;
+using Permissions.Application.Dtos;
 
-namespace Permissions.Application.Permissions.Queries.GetPermissions
-{
-    internal class GetPermissionsQuery
-    {
-    }
-}
+namespace Permissions.Application.Permissions.Queries.GetPermissions;
+
+public record GetPermissionsQuery(PaginationRequest PaginationRequest)
+    : IQuery<GetPermissionsResult>;
+
+public record GetPermissionsResult(PaginatedResult<PermissionDto> Permissions);

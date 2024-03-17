@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Permissions.Application.Dtos;
 
-namespace Permissions.Application.Extentions
+namespace Permissions.Application.Extentions;
+
+public static class PermissionExtentions
 {
-    internal class PermissionExtentions
+    public static IEnumerable<PermissionDto> ToPermissionDtoList(this IEnumerable<PermissionDto> permissions)
     {
+        return permissions.Select(permission => new PermissionDto(
+            Id: permission.Id,
+            EmployeeId: permission.EmployeeId,
+            ApplicationName: permission.ApplicationName,
+            PermissionType: permission.PermissionType,
+            PermissionGranted: permission.PermissionGranted,
+            PermissionGrantedEmployeeId: permission.PermissionGrantedEmployeeId));
     }
 }
