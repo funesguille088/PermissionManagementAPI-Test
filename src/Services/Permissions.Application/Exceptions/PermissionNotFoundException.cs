@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BuildingBlocks.Exceptions;
 
-namespace Permissions.Application.Exceptions
+namespace Permissions.Application.Exceptions;
+public class PermissionNotFoundException : NotFoundException
 {
-    internal class PermissionNotFoundException
+    public PermissionNotFoundException(Guid id) : base("Permission", id)
     {
+
     }
 }
