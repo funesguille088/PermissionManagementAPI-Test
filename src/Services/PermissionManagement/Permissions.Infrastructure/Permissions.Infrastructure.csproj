@@ -19,4 +19,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\Permissions.Application\Permissions.Application.csproj" />
+    <ProjectReference Include="..\Permissions.Domain\Permissions.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

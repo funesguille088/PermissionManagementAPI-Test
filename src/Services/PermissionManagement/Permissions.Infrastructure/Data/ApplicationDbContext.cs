@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Permissions.Application.Data;
 using Permissions.Domain.Models;
 using System.Reflection;
 
 
 namespace Permissions.Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) :
            base(options)

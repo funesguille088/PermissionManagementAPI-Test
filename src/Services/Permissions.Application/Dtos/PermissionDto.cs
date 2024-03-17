@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Permissions.Domain.Enums;
 
-namespace Permissions.Application.Dtos
-{
-    internal class PermissionDto
-    {
-    }
-}
+namespace Permissions.Application.Dtos;
+
+public record PermissionDto(
+    Guid Id,
+    Guid EmployeeId,
+    string ApplicationName,
+    PermissionType PermissionType,
+    bool PermissionGranted,
+    Guid PermissionGrantedEmployeeId
+    );

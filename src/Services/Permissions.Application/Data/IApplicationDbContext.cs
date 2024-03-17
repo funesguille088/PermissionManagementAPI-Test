@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using Permissions.Domain.Models;
 
-namespace Permissions.Application.Data
+namespace Permissions.Application.Data;
+
+public interface IApplicationDbContext
 {
-    internal interface IApplicationDbContext
-    {
-    }
+    DbSet<Employee> Employees { get; }
+    DbSet<Permission> Permissions { get; }
+
+    Task<int> SaveChangesAsync(CancellationToken cancellationToken);
 }

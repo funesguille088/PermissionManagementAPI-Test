@@ -1,12 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
 
-namespace Permissions.Application.Permissions.Commands.RequestPermission
+using BuildingBlocks.CQRS;
+
+namespace Permissions.Application.Permissions.Commands.RequestPermission;
+public class RequestPermissionHandler : ICommandHandler<RequestPermissionCommand, RequestPermissionResult>
 {
-    internal class RequestPermissionHandler
+    public Task<RequestPermissionResult> Handle(RequestPermissionCommand request, CancellationToken cancellationToken)
     {
+        // Create Permission entity from command object
+        // Save to database
+        // Return result
+
+        throw new NotImplementedException();
     }
 }
