@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Permissions.Application.Data;
 using Permissions.Application.Dtos;
 using Permissions.Application.Extentions;
-
+using Permissions.Domain.Models;
 
 namespace Permissions.Application.Permissions.Queries.GetPermissions;
 
@@ -13,7 +13,7 @@ public class GetPermissionsHandler(IApplicationDbContext dbContext)
 {
     public async Task<GetPermissionsResult> Handle(GetPermissionsQuery query, CancellationToken cancellationToken)
     {
-        //get order with pagination
+        //get permissions with pagination
         //return result
 
         var pageIndex = query.PaginationRequest.PageIndex;
@@ -22,7 +22,6 @@ public class GetPermissionsHandler(IApplicationDbContext dbContext)
         var totalCount = await dbContext.Permissions.LongCountAsync(cancellationToken);
 
         var permissions = await dbContext.Permissions
-            .Include(p => p.Id)
             .OrderBy(p => p.ApplicationName)
             .Skip(pageSize * pageIndex)
             .Take(pageSize)
@@ -33,6 +32,6 @@ public class GetPermissionsHandler(IApplicationDbContext dbContext)
                 pageIndex,
                 pageSize,
                 totalCount,
-                (IEnumerable<PermissionDto>)permissions));
+                permissions.ToPermissionDtoList()));
     }
 }
