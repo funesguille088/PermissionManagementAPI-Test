@@ -15,7 +15,7 @@ namespace Permissions.Application
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
                 config.AddOpenBehavior(typeof(LoggingBehavior<,>));
             });
-
+                        
             return services;
         }
     }

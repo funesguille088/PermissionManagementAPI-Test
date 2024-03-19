@@ -4,11 +4,13 @@ using Permissions.Application.Dtos;
 using Permissions.Domain.Models;
 using Permissions.Domain.ValueObjects;
 using Permissions.Application.Exceptions;
+using Permissions.Application.Permissions.EventHandlers.Elasticsearch;
 
 namespace Permissions.Application.Permissions.Commands.ModifyPermission;
 public class ModifyPermissionHandler(IApplicationDbContext dbContext)
     : ICommandHandler<ModifyPermissionCommand, ModifyPermissionResult>
 {
+    private readonly PermissionSyncService? _permissionSyncService;
     public async Task<ModifyPermissionResult> Handle(ModifyPermissionCommand command, CancellationToken cancellationToken)
     {
         //Update Permission entity from command object
@@ -29,6 +31,7 @@ public class ModifyPermissionHandler(IApplicationDbContext dbContext)
         dbContext.Permissions.Update(permission);
         await dbContext.SaveChangesAsync(cancellationToken);
 
+        //await _permissionSyncService.SyncPermissionsAsync();
         return new ModifyPermissionResult(true);
     }
 

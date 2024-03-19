@@ -1,26 +1,51 @@
 ﻿
 
+using BuildingBlocks.Behaviors;
 using BuildingBlocks.CQRS;
+using Microsoft.Extensions.Logging;
+using Nest;
 using Permissions.Application.Data;
 using Permissions.Application.Dtos;
+using Permissions.Application.Permissions.EventHandlers.Elasticsearch;
 using Permissions.Domain.Models;
 using Permissions.Domain.ValueObjects;
+using Serilog;
 
 namespace Permissions.Application.Permissions.Commands.RequestPermission;
-public class RequestPermissionHandler(IApplicationDbContext dbContext) 
-    : ICommandHandler<RequestPermissionCommand, RequestPermissionResult>
+public class RequestPermissionHandler : ICommandHandler<RequestPermissionCommand, RequestPermissionResult>
 {
+    private readonly IApplicationDbContext _dbContext;
+    private readonly ILogger<RequestPermissionHandler> _logger;
+    private readonly IElasticClient _elasticClient;
+
+    // Constructor with dbContext parameter
+    public RequestPermissionHandler(IApplicationDbContext dbContext, ILogger<RequestPermissionHandler> logger, IElasticClient elasticClient)
+        : this(dbContext) // Call the other constructor with dbContext parameter
+    {
+        _logger = logger;
+        _elasticClient = elasticClient;
+    }
+
+    // Constructor with dbContext parameter
+    public RequestPermissionHandler(IApplicationDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
+
     public async Task<RequestPermissionResult> Handle(RequestPermissionCommand command, CancellationToken cancellationToken)
     {
         // Create Permission entity from command object
         // Save to database
         // Return result
 
+        //_logger.LogInformation("Request Permission Started");
+        
         var permission = RequestPermission(command.Permission);
 
-        dbContext.Permissions.Add(permission);
-        await dbContext.SaveChangesAsync(cancellationToken);
+        _dbContext.Permissions.Add(permission);
+        await _dbContext.SaveChangesAsync(cancellationToken);
 
+        await new PermissionSyncService().SyncPermissionsAsync(_dbContext, _elasticClient);
         return new RequestPermissionResult(permission.Id.Value);
 
     }

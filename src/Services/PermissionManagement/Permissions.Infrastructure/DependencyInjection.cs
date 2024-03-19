@@ -5,6 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Permissions.Infrastructure.Data;
 using Permissions.Infrastructure.Data.Interceptors;
 using Permissions.Application.Data;
+using BuildingBlocks.Behaviors;
+using Nest;
 
 namespace Permissions.Infrastructure;
 public static class DependencyInjection
@@ -26,6 +28,7 @@ public static class DependencyInjection
 
         services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
+    
         return services;
     }
 
