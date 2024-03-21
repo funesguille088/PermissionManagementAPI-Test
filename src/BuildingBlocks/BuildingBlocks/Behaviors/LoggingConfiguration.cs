@@ -5,11 +5,13 @@ using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 using System.Reflection;
 using Nest;
+using System;
 
 namespace BuildingBlocks.Behaviors
 {
     public class LoggingConfiguration
     {
+        private const string IndexName = "permissionregistry";
         public void configureLogging()
         {
             var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
@@ -33,10 +35,10 @@ namespace BuildingBlocks.Behaviors
         {
             return new ElasticsearchSinkOptions(new Uri(configuration["ElasticConfiguration:Uri"]))
             {
-                AutoRegisterTemplate = true,
                 IndexFormat = $"{Assembly.GetExecutingAssembly().GetName().Name.ToLower().Replace(".","-")}-{environment.ToLower()}-{DateTime.UtcNow:yyyy-MM}",
-                NumberOfReplicas = 2,
-                NumberOfShards = 2
+                AutoRegisterTemplate = true,
+                NumberOfShards = 2, 
+                NumberOfReplicas = 2
             }; 
         }
 
@@ -49,7 +51,13 @@ namespace BuildingBlocks.Behaviors
                 .AddJsonFile($"appsettings.{environment}.json", optional: true).Build();
 
             var elasticsearchUri = new Uri(configuration["ElasticConfiguration:Uri"]);
-            var settings = new ConnectionSettings(elasticsearchUri);
+            var settings = new ConnectionSettings(elasticsearchUri)
+                .DefaultIndex(IndexName)
+                //.DefaultMappingFor(m => m.IndexName(IndexName))
+                .EnableHttpPipelining()
+                .DisableDirectStreaming()
+                .EnableDebugMode()
+                .EnableApiVersioningHeader();
             var elsClient = new ElasticClient(settings);
             
             return elsClient;

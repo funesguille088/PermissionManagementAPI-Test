@@ -61,7 +61,7 @@ namespace Permissions.Application.Permissions.EventHandlers.Elasticsearch
                 if (!createIndexResponse.IsValid)
                 {
                     // Handle index creation failure
-                    Console.WriteLine($"Failed to create index: {createIndexResponse.ServerError?.Error?.Reason}");
+                    Console.WriteLine($"Failed to create index: {createIndexResponse.DebugInformation}");
                 }
             }
         }

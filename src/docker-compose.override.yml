@@ -47,6 +47,7 @@ services:
       - elasticsearch
     environment:
       - ELASTICSEARCH_URL=http://localhost:9200
+      - ELASTIC_CLIENT_APIVERSIONING = true
     networks:
       - elastic
     

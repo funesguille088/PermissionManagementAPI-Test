@@ -1,12 +1,4 @@
-﻿using Permissions.Domain.Enums;
-using Permissions.Domain.ValueObjects;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Permissions.Domain.Models
+﻿namespace Permissions.Domain.Models
 {
     public class ELSPermissionDocument
     {

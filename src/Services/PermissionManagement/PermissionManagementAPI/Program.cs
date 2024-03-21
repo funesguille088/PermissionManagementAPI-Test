@@ -16,14 +16,13 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<PermissionSyncService>();
+
 // configure serilog
 LoggingConfiguration logging = new LoggingConfiguration();
 logging.configureLogging();
 builder.Host.UseSerilog();
 builder.Services.AddSingleton<IElasticClient>(logging.ConfigureElasticClient());
-
-
-builder.Services.AddScoped<PermissionSyncService>();
 
 
 builder.Services
