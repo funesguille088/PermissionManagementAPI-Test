@@ -1,4 +1,11 @@
-﻿using FluentValidation;
+﻿/*
+ * CustomExceptionHandler: A handler for custom exceptions.
+ * 
+ * This class is responsible for handling custom exceptions and generating appropriate ProblemDetails responses.
+ * It implements the IExceptionHandler interface, providing a method for handling exceptions asynchronously.
+ */
+
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

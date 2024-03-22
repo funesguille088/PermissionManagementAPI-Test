@@ -1,4 +1,11 @@
 ﻿
+/*
+     * BadRequestException: Represents an exception for bad request scenarios.
+     * 
+     * This exception is thrown when a request is invalid or malformed.
+     * It inherits from the base Exception class and provides additional details about the error.
+     */
+
 namespace BuildingBlocks.Exceptions
 {
     public class BadRequestException : Exception
