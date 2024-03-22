@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Permissions\EventHandlers\Integration\**" />
+    <EmbeddedResource Remove="Permissions\EventHandlers\Integration\**" />
+    <None Remove="Permissions\EventHandlers\Integration\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.3" />
     <PackageReference Include="NEST" Version="7.17.5" />
   </ItemGroup>
@@ -14,10 +20,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BuildingBlocks\BuildingBlocks\BuildingBlocks.csproj" />
     <ProjectReference Include="..\PermissionManagement\Permissions.Domain\Permissions.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Permissions\EventHandlers\Integration\" />
   </ItemGroup>
 
 </Project>

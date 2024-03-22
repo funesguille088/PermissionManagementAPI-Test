@@ -14,10 +14,11 @@ public class GetPermission : ICarterModule
     {
         app.MapGet("/GetPermissions", async ([AsParameters] PaginationRequest request, ISender sender) =>
         {
+
             var result = await sender.Send(new GetPermissionsQuery(request));
 
             var response = result.Adapt<GetPermissionsResponse>();
-
+            
             return Results.Ok(response);
         })
             .WithName("GetPermissions")

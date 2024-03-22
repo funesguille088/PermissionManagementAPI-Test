@@ -1,4 +1,5 @@
 using BuildingBlocks.Behaviors;
+using Microsoft.AspNetCore.Hosting;
 using Nest;
 using PermissionManagementAPI;
 using Permissions.Application;
@@ -6,6 +7,8 @@ using Permissions.Application.Permissions.EventHandlers.Elasticsearch;
 using Permissions.Infrastructure;
 using Permissions.Infrastructure.Data.Extentions;
 using Serilog;
+using Serilog.Sinks.Elasticsearch;
+using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,20 +19,17 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddScoped<PermissionSyncService>();
 
 // configure serilog
-LoggingConfiguration logging = new LoggingConfiguration();
-logging.configureLogging();
-builder.Host.UseSerilog();
-builder.Services.AddSingleton<IElasticClient>(logging.ConfigureElasticClient());
 
+builder.Host.UseSerilog(SeriLogger.Configure);
 
 builder.Services
     .AddApplicationServices()
     .AddInfrastructureServices(builder.Configuration)
     .AddApiServices();
 
+builder.Services.AddTransient<PermissionSyncService>();
 
 var app = builder.Build();
 

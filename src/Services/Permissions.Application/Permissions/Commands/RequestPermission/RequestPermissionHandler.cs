@@ -2,6 +2,7 @@
 
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.CQRS;
+using Elasticsearch.Net;
 using Microsoft.Extensions.Logging;
 using Nest;
 using Permissions.Application.Data;
@@ -16,10 +17,10 @@ public class RequestPermissionHandler : ICommandHandler<RequestPermissionCommand
 {
     private readonly IApplicationDbContext _dbContext;
     private readonly ILogger<RequestPermissionHandler> _logger;
-    private readonly IElasticClient _elasticClient;
+    private readonly IElasticLowLevelClient _elasticClient;
 
     // Constructor with dbContext parameter
-    public RequestPermissionHandler(IApplicationDbContext dbContext, ILogger<RequestPermissionHandler> logger, IElasticClient elasticClient)
+    public RequestPermissionHandler(IApplicationDbContext dbContext, ILogger<RequestPermissionHandler> logger, IElasticLowLevelClient elasticClient)
         : this(dbContext) // Call the other constructor with dbContext parameter
     {
         _logger = logger;
@@ -37,15 +38,15 @@ public class RequestPermissionHandler : ICommandHandler<RequestPermissionCommand
         // Create Permission entity from command object
         // Save to database
         // Return result
-
-        //_logger.LogInformation("Request Permission Started");
-        
+    
         var permission = RequestPermission(command.Permission);
 
         _dbContext.Permissions.Add(permission);
         await _dbContext.SaveChangesAsync(cancellationToken);
 
-        await new PermissionSyncService().SyncPermissionsAsync(_dbContext, _elasticClient);
+        var permissionSyncService = new PermissionSyncService(_elasticClient);
+        await permissionSyncService.SyncPermissionsAsync(_dbContext);
+
         return new RequestPermissionResult(permission.Id.Value);
 
     }

@@ -1,5 +1,6 @@
 ﻿
 using Elasticsearch.Net;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Nest;
 using Permissions.Application.Data;
@@ -10,78 +11,75 @@ namespace Permissions.Application.Permissions.EventHandlers.Elasticsearch
     public class PermissionSyncService
     {
         private const string IndexName = "permissionregistry";
-        
-        public async Task SyncPermissionsAsync(IApplicationDbContext _dbContext, IElasticClient _elasticClient)
-        {
-            CreateIndexIfNotExists(_elasticClient);
+        private readonly IElasticLowLevelClient _elasticClient;
 
+        public PermissionSyncService(IElasticLowLevelClient elasticClient)
+        {
+            _elasticClient = elasticClient;
+        }
+
+        public async Task SyncPermissionsAsync(IApplicationDbContext _dbContext)
+        {
+            var createIndexResult = await CreateIndex(IndexName);
+
+            var bulkInsertResult = await BulkIndexAsync(_dbContext);
+
+        }
+
+       
+        public async Task<StringResponse> BulkIndexAsync(IApplicationDbContext _dbContext)
+        {
             var permissions = await _dbContext.Permissions.ToListAsync();
 
-            var documents = permissions.Select(p => new ELSPermissionDocument
-            {
-                id = p.Id.Value.ToString(),
-                employeeid = p.EmployeeId.Value.ToString(),
-                applicationname = p.ApplicationName,
-                permissiontype = p.PermissionType.GetStringValue(),
-                permissiongranted = p.PermissionGranted,
-                permissiongrantedemployeeId = p.PermissionGrantedEmployeeId.Value.ToString()
-            }).ToList(); // Materialize the LINQ query into a list
+            var bulkRequest = new List<object>();
 
-            var bulkRequest = new BulkRequest { Operations = new List<IBulkOperation>() };
-
-            foreach (var doc in documents)
+            foreach (var permission in permissions)
             {
-                bulkRequest.Operations.Add(new BulkIndexOperation<ELSPermissionDocument>(doc)
+                bulkRequest.Add(new { index = new { _index = IndexName } });
+                bulkRequest.Add(new ELSPermissionDocument
                 {
-                    Index = IndexName
+                    permissionid = permission.Id.Value.ToString(),
+                    employeeid = permission.EmployeeId.Value.ToString(),
+                    applicationname = permission.ApplicationName,
+                    permissiontype = permission.PermissionType.GetStringValue(),
+                    permissiongranted = permission.PermissionGranted,
+                    permissiongrantedemployeeId = permission.PermissionGrantedEmployeeId.Value.ToString()
                 });
             }
 
-            var response = await _elasticClient.BulkAsync(bulkRequest);
+            return await _elasticClient.BulkAsync<StringResponse>(PostData.MultiJson(bulkRequest));
         }
 
-        public void CreateIndexIfNotExists(IElasticClient _elasticClient)
+        public async Task<IElasticsearchResponse> CreateIndex(string indexName)
         {
-            var indexState = new IndexState();
-
-            // Check if the index exists
-            var indexExistsResponse = _elasticClient.Indices.Exists(IndexName);
-            if (!indexExistsResponse.Exists)
+            
+            if (_elasticClient.Indices.Exists<StringResponse>(indexName).ApiCall.HttpStatusCode == StatusCodes.Status200OK)
             {
-                // Create the index
-                var createIndexResponse = _elasticClient.Indices.Create(IndexName, d => d
-                                            .Index(IndexName)
-                                            .Settings(s => s
-                                                .NumberOfShards(1)
-                                                .NumberOfReplicas(2)
-                                                .Analysis(SetupAnalysis()))
-                                            .Map<ELSPermissionDocument>(m => m.AutoMap()));
-
-                // Check if the index creation was successful
-                if (!createIndexResponse.IsValid)
-                {
-                    // Handle index creation failure
-                    Console.WriteLine($"Failed to create index: {createIndexResponse.DebugInformation}");
-                }
+                return null;
             }
-        }
 
-        private static Func<AnalysisDescriptor, IAnalysis> SetupAnalysis()
-        {
-            Func<AnalysisDescriptor, IAnalysis> analysisConfigurator = analysis =>
+            var mappings = new
             {
-                analysis.Analyzers(analyzers => analyzers
-                .Custom("custom_analyzer", ca => ca
-                .Tokenizer("standard")
-                .Filters("lowercase", "my_stemmer")));
-
-                analysis.TokenFilters(tokenFilters => tokenFilters
-                    .Stemmer("my_stemmer", s => s
-                        .Language("english")));
-                return analysis;
+                mappings = new
+                {
+                    dynamic = "strict", 
+                    properties = new
+                    {
+                        permissionid = new { type = "keyword" },
+                        employeeid = new { type = "keyword" },
+                        applicationname = new { type = "text" },
+                        permissiontype = new { type = "text" },
+                        permissiongranted = new { type = "boolean" },
+                        permissiongrantedemployeeId = new { type = "keyword" }
+                    }
+                }
             };
 
-            return analysisConfigurator;
+            var postData = PostData.Serializable(mappings);
+
+            return await _elasticClient.Indices.CreateAsync<DynamicResponse>(indexName, postData);
         }
+
+       
     }
 }

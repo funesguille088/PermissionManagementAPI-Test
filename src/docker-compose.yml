@@ -9,3 +9,12 @@ services:
     build:
       context: .
       dockerfile: Services/PermissionManagement/PermissionManagementAPI/Dockerfile
+  
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.12.2
+
+volumes:
+  elasticsearch-data:

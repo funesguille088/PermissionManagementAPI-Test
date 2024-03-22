@@ -2,7 +2,7 @@
 {
     public class ELSPermissionDocument
     {
-        public string id { get; set; }
+        public string permissionid { get; set; }
         public string employeeid { get; set; }
         public string applicationname { get; set; }
         public string permissiontype { get; set; }
