@@ -1,4 +1,18 @@
-﻿using BuildingBlocks.Pagination;
+﻿/*
+   The GetPermission endpoint module handles the GET request to retrieve permissions.
+
+   Dependencies:
+   - PaginatedResult<PermissionDto>: Represents a paginated result of permission DTOs.
+   - GetPermissionsQuery: Represents a query for retrieving permissions with pagination.
+   - PaginationRequest: Request for pagination.
+
+   Usage:
+   - Accepts the pagination parameters.
+   - Constructs a GetPermissionsQuery with these parameters.
+   - Retrieves the data and returns it in a paginated format.
+*/
+
+using BuildingBlocks.Pagination;
 using Permissions.Application.Permissions.Queries.GetPermissions;
 
 namespace PermissionManagementAPI.Endpoints;

@@ -1,4 +1,18 @@
-﻿using Permissions.Application.Permissions.Commands.RequestPermission;
+﻿/*
+   The RequestPermission endpoint module handles the POST request to request permissions.
+
+   Dependencies:
+   - PermissionDto: Represents the DTO for permission.
+   - RequestPermissionCommand: Represents a command for requesting permission.
+
+   Usage:
+   - Accepts a Permission Request object.
+   - Maps the request to a RequestPermissionCommand.
+   - Uses MediatR to send the command to the corresponding handler.
+   - Returns a response with the created Permission Id.
+*/
+
+using Permissions.Application.Permissions.Commands.RequestPermission;
 
 namespace PermissionManagementAPI.Endpoints;
 

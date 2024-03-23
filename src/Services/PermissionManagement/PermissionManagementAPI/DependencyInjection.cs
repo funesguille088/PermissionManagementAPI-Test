@@ -1,4 +1,12 @@
-﻿namespace PermissionManagementAPI
+﻿/*
+   The DependencyInjection class provides methods for configuring and using API services.
+
+   Usage:
+   - AddApiServices: Adds Carter as a service.
+   - UseApiServices: Configures Carter for the WebApplication.
+*/
+
+namespace PermissionManagementAPI
 {
     public static class DependencyInjection
     {

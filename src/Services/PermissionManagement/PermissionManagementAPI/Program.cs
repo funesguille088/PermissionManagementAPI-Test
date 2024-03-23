@@ -1,14 +1,31 @@
+/*
+   The startup code configures and runs the Permission Management API.
+
+   Usage:
+   - AddControllers: Adds controllers to the service container.
+   - AddEndpointsApiExplorer: Adds API explorer services.
+   - AddSwaggerGen: Adds Swagger services.
+   - UseSerilog: Configures Serilog for logging.
+   - AddApplicationServices: Configures application services.
+   - AddInfrastructureServices: Configures infrastructure services.
+   - AddApiServices: Configures API services.
+   - UseApiServices: Uses configured API services.
+   - InitializeDatabaseAsync: Initializes the database asynchronously.
+   - UseSwagger: Configures Swagger middleware.
+   - UseSwaggerUI: Configures Swagger UI middleware.
+   - UseHttpsRedirection: Enables HTTPS redirection.
+   - UseAuthorization: Adds authorization middleware.
+   - MapControllers: Maps controller routes.
+   - Run: Runs the application.
+*/
+
 using BuildingBlocks.Behaviors;
-using Microsoft.AspNetCore.Hosting;
-using Nest;
 using PermissionManagementAPI;
 using Permissions.Application;
 using Permissions.Application.Permissions.EventHandlers.Elasticsearch;
 using Permissions.Infrastructure;
 using Permissions.Infrastructure.Data.Extentions;
 using Serilog;
-using Serilog.Sinks.Elasticsearch;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,19 @@
-﻿
+﻿/*
+   The ModifyPermission endpoint module handles the PUT request to modify permissions.
+
+   Dependencies:
+   - PermissionDto: Represents the DTO for permission.
+   - ModifyPermissionCommand: Represents a command for modifying permission.
+
+   Usage:
+   - Accepts a ModifyPermission Request.
+   - Maps the request to a ModifyPermissionCommand.
+   - Sends the command for processing.
+   - Returns a success or error response based on the outcome.
+*/
+
+
+
 using Permissions.Application.Permissions.Commands.ModifyPermission;
 
 namespace PermissionManagementAPI.Endpoints;
