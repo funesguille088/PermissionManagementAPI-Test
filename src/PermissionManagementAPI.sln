@@ -25,7 +25,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{EC454326-F2C3-45C8-BEC5-D6AE36130B25}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PermissionsManagementAPI-Test", "Services\PermissionManagement\UnitTests\Tests\PermissionsManagementAPI-Test\PermissionsManagementAPI-Test.csproj", "{065D7211-E1CE-481E-98C1-BA542BEE7D2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PermissionsManagementAPI-Test", "Services\PermissionManagement\UnitTests\Tests\PermissionsManagementAPI-Test\PermissionsManagementAPI-Test.csproj", "{065D7211-E1CE-481E-98C1-BA542BEE7D2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
