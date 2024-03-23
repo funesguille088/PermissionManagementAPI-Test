@@ -1,0 +1,51 @@
+﻿apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: permissionmanagementapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: permissionmanagement
+  template:
+    metadata:
+      labels:
+        app: permissionmanagementapi
+    spec:
+      containers:
+      - name: permissionmanagementapi
+        image: permissionmanagementapi:1.0.0
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 8081
+          name: https
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development" 
+        - name: ASPNETCORE_HTTP_PORTS
+          value: "8080"
+        - name: ASPNETCORE_HTTPS_PORTS
+          value: "8081"
+        - name: ConnectionStrings__Database
+          value: "Server=permissionmanagementdb;Database=PermissionManagementDb;User Id=sa;Password=GfD12345678;Encrypt=False;TrustServerCertificate=True"
+        - name: ElasticConfiguration__Uri
+          value: "http://elasticsearch:9200"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: permissionmanagementapi-service
+spec:
+  selector:
+    app: permissionmanagementapi
+  ports:
+  - name: http
+    protocol: TCP
+    port: 6000
+    targetPort: 8080
+  - name: https
+    protocol: TCP
+    port: 6060
+    targetPort: 8081
