@@ -1,4 +1,8 @@
 ﻿
+/*
+ * This class provides initial data for employees and permissions.
+ */
+
 using Permissions.Domain.Enums;
 using Permissions.Domain.Models;
 using Permissions.Domain.ValueObjects;
