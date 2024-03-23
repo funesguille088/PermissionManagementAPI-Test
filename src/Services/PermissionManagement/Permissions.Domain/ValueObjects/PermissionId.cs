@@ -1,4 +1,10 @@
-﻿
+﻿/*
+   The PermissionId class represents the identifier of a permission in the domain model.
+
+   Usage:
+   1. Use the static Of method to create a new instance of the PermissionId class with a specified GUID value.
+*/
+
 using Permissions.Domain.Exceptions;
 
 namespace Permissions.Domain.ValueObjects

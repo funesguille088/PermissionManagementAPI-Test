@@ -1,4 +1,10 @@
-﻿
+﻿/*
+   The Employee class represents an employee entity in the domain model.
+
+   Usage:
+   1. Define properties for storing employee-related data.
+   2. Use the static Create method to create a new instance of the Employee class.
+*/
 using Permissions.Domain.Abstractions;
 using Permissions.Domain.ValueObjects;
 

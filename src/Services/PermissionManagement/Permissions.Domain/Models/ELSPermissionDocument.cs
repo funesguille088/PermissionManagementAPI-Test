@@ -1,4 +1,12 @@
-﻿namespace Permissions.Domain.Models
+﻿/*
+   ELSPermissionDocument represents the structure of documents stored in Elasticsearch for permissions.
+
+   Usage:
+   1. Define properties for storing permission-related data.
+*/
+
+
+namespace Permissions.Domain.Models
 {
     public class ELSPermissionDocument
     {

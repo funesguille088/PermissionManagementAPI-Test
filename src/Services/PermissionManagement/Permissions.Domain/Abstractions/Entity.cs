@@ -1,4 +1,8 @@
-﻿
+﻿/*
+ * Entity<T> class represents an abstract base class for entities in the domain.
+ * It provides common properties such as Id, CreatedAt, CreatedBy, LastModified, and LastModifiedBy.
+ */
+
 namespace Permissions.Domain.Abstractions
 {
     public abstract class Entity<T> : IEntity<T>

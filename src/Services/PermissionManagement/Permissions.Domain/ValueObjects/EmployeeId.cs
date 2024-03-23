@@ -1,4 +1,10 @@
-﻿
+﻿/*
+   The EmployeeId class represents the identifier of an employee in the domain model.
+
+   Usage:
+   1. Use the static Of method to create a new instance of the EmployeeId class with a specified GUID value.
+*/
+
 using Permissions.Domain.Exceptions;
 
 namespace Permissions.Domain.ValueObjects

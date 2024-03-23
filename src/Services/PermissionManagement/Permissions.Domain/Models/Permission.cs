@@ -1,4 +1,11 @@
-﻿
+﻿/*
+   The Permission class represents a permission entity in the domain model.
+
+   Usage:
+   1. Define properties for storing permission-related data.
+   2. Use the static Create method to create a new instance of the Permission class.
+   3. Use the Update method to update an existing permission instance.
+*/
 using Permissions.Domain.Abstractions;
 using Permissions.Domain.Enums;
 using Permissions.Domain.Events;
