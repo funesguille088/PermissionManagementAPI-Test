@@ -1,4 +1,15 @@
-﻿
+﻿/*
+   The PermissionSyncService is responsible for synchronizing permissions with Elasticsearch.
+
+   Dependencies:
+   - IApplicationDbContext: Interface representing the application database context.
+   - IElasticLowLevelClient: Interface for interacting with Elasticsearch.
+
+   Usage:
+   - Inject IApplicationDbContext and IElasticLowLevelClient into the constructor.
+   - Call SyncPermissionsAsync method to synchronize permissions with Elasticsearch.
+*/
+
 using Elasticsearch.Net;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;

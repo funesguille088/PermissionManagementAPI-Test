@@ -1,4 +1,21 @@
-﻿
+﻿/*
+   The RequestPermissionHandler handles the request for a new permission.
+
+   Dependencies:
+   - ICommandHandler<RequestPermissionCommand, RequestPermissionResult>: Represents the command handler interface with RequestPermissionCommand as the command type and RequestPermissionResult as the result type.
+   - IApplicationDbContext: Represents the application database context interface.
+   - ILogger<RequestPermissionHandler>: Represents the logger for RequestPermissionHandler.
+   - IElasticLowLevelClient: Represents the low-level Elasticsearch client interface.
+   - PermissionDto: Represents the data transfer object for permission.
+   - PermissionSyncService: Represents the service for synchronizing permissions with Elasticsearch.
+   - Permission: Represents the permission entity.
+   - PermissionId: Represents the value object for permission ID.
+   - EmployeeId: Represents the value object for employee ID.
+
+   Usage:
+   - Instantiate the RequestPermissionHandler with the necessary dependencies.
+   - Handle the request by passing it to the Handle method of the handler.
+*/
 
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.CQRS;
@@ -35,10 +52,6 @@ public class RequestPermissionHandler : ICommandHandler<RequestPermissionCommand
 
     public async Task<RequestPermissionResult> Handle(RequestPermissionCommand command, CancellationToken cancellationToken)
     {
-        // Create Permission entity from command object
-        // Save to database
-        // Return result
-    
         var permission = RequestPermission(command.Permission);
 
         _dbContext.Permissions.Add(permission);

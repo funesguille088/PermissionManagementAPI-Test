@@ -1,4 +1,17 @@
-﻿using BuildingBlocks.CQRS;
+﻿/*
+   The GetPermissionsHandler is responsible for handling queries to retrieve permissions with pagination.
+
+   Dependencies:
+   - IApplicationDbContext: Interface representing the application database context.
+   - ILogger<GetPermissionsHandler>: Interface for logging.
+   - GetPermissionsQuery: Query for retrieving permissions.
+   - PermissionDto: DTO representing permission data.
+
+   Usage:
+   - Inject IApplicationDbContext and ILogger<GetPermissionsHandler> into the constructor.
+   - Implement Handle method to retrieve permissions with pagination and return the result.
+*/
+using BuildingBlocks.CQRS;
 using BuildingBlocks.Pagination;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
