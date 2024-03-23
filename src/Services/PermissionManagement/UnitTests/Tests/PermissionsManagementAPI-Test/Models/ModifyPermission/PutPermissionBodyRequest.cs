@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+   This class defines a model for the request body when modifying a permission in the Permissions Management API tests.
+*/
 
 namespace PermissionsManagementAPI_Test.Models.ModifyPermission
 {

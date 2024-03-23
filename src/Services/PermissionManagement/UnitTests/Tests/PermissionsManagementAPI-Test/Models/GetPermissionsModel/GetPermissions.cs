@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+   This class defines a model for the permissions data used in the Permissions Management API tests.
+   It includes properties to hold information about pagination and a list of permission data items.
+*/
 
 namespace PermissionsManagementAPI_Test.Models.GetPermissionsModel
 {

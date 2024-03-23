@@ -1,4 +1,15 @@
-﻿using PermissionsManagementAPI_Test.Models.RequestPermission;
+﻿/*
+   This class defines a route for testing the Request Permission endpoint in the Permissions Management API.
+   It contains a method to send a POST request to the Request Permissions endpoint and handle the response.
+
+   Usage:
+   1. Create an instance of RequestPermission_Route.
+   2. Call the TestRequestPermission_Route method with a PostPermissionBodyRequest object as a parameter.
+      This method sends a POST request to the Request Permissions endpoint with the provided permission data.
+   3. Handle the response returned by the method to check if the operation was successful.
+*/
+
+using PermissionsManagementAPI_Test.Models.RequestPermission;
 using System.Net;
 using System.Text;
 

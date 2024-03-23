@@ -1,3 +1,13 @@
+/*
+   This class contains test methods for the Permission Management API endpoints.
+   It tests the Request Permission, Modify Permission, and Get Permissions routes.
+
+   Usage:
+   1. Create an instance of APITests.
+   2. Call the desired test method(s) to execute the corresponding API test(s).
+   3. Check the console output for test results.
+*/
+
 using PermissionsManagementAPI_Test.Models.GetPermissionsModel;
 using PermissionsManagementAPI_Test.Models.ModifyPermission;
 using PermissionsManagementAPI_Test.Models.RequestPermission;

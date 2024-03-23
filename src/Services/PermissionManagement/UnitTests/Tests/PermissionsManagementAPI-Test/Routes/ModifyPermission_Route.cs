@@ -1,4 +1,15 @@
-﻿using PermissionsManagementAPI_Test.Models.ModifyPermission;
+﻿/*
+   This class defines a route for testing the Modify Permission endpoint in the Permissions Management API.
+   It contains a method to send a PUT request to the Modify Permission endpoint and handle the response.
+
+   Usage:
+   1. Create an instance of ModifyPermission_Route.
+   2. Call the TestModifyPermission_Route method with a PutPermissionBodyRequest object as a parameter.
+      This method sends a PUT request to the Modify Permissions endpoint with the provided permission data.
+   3. Handle the response returned by the method to check if the operation was successful.
+*/
+
+using PermissionsManagementAPI_Test.Models.ModifyPermission;
 using System.Net;
 using System.Text;
 

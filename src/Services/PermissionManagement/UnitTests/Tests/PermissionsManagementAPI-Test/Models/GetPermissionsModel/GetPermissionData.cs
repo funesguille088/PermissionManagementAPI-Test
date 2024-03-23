@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿/*
+   This class defines a model for permission data used in the Permissions Management API tests.
+   It includes properties such as ID, employee ID, application name, permission type, permission granted status,
+   and the ID of the employee who granted the permission.
+*/
 namespace PermissionsManagementAPI_Test.Models.GetPermissionsModel
 {
     public class GetPermissionData
